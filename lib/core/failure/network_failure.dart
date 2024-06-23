@@ -66,13 +66,4 @@ class NetworkFailure implements AppFailure {
     }
     return "Unknown Error";
   }
-
-  factory NetworkFailure.getException(Exception e) {
-    final excep = e as DioException;
-    return NetworkFailure(
-      name: excep.type.toString(),
-      uriPath: excep.requestOptions.path,
-      message: excep.toString(),
-    );
-  }
 }
