@@ -3,60 +3,54 @@
 import 'package:clean_arch/core/failure/app_failure.dart';
 import 'package:clean_arch/core/networking/status_code.dart';
 import 'package:dio/dio.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class NetworkFailure implements AppFailure {
-  @override
-  final String name;
-  @override
-  final String uriPath;
-  @override
-  final String message;
+part 'network_failure.freezed.dart';
 
-  const NetworkFailure({
-    required this.name,
-    required this.uriPath,
-    required this.message,
-  });
+@Freezed(copyWith: true)
+class NetworkFailure with _$NetworkFailure implements AppFailure {
+  const factory NetworkFailure({
+    required String name,
+    required String message,
+    required String uriPath,
+    required int statusCode,
+  }) = _NetworkFailure;
 
   static NetworkFailure getDioException(Exception error) {
     if (error is DioException) {
-      final message = _handleDioError(error);
       final code = error.response?.statusCode;
       final status = getStatusCode(code);
       final path = error.requestOptions.path;
+      final message = _handleDioErrorMessage(error);
 
       return NetworkFailure(
         name: status?.name ?? 'Unrecognized error',
         uriPath: path,
         message: message,
+        statusCode: code ?? 0,
       );
     }
     return const NetworkFailure(
       name: 'Unrecognized error',
       uriPath: '',
       message: 'Unrecognized error',
+      statusCode: 0,
     );
   }
 
   // Helper method to handle different types of Dio exceptions
-  static String _handleDioError(DioException error) {
+  static String _handleDioErrorMessage(DioException error) {
     switch (error.type) {
       case DioExceptionType.connectionTimeout:
       case DioExceptionType.sendTimeout:
       case DioExceptionType.receiveTimeout:
         return "Timeout occurred while sending or receiving";
       case DioExceptionType.badResponse:
-        final code = error.response?.statusCode;
-        final statusCode = getStatusCode(code);
-
-        if (statusCode != null) {
-          return statusCode.name;
-        }
-        break;
+        return error.message ?? 'N/A';
       case DioExceptionType.cancel:
         break;
       case DioExceptionType.unknown:
-        return "No Internet Connection";
+        return error.message ?? 'N/A';
       case DioExceptionType.badCertificate:
         return "Internal Server Error";
       case DioExceptionType.connectionError:

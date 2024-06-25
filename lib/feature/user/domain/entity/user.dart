@@ -17,7 +17,7 @@ class User with _$User {
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }
 
-extension CopyWithX on User {
+extension UserCopyWithX on User {
   User copyWith({
     int? id,
     String? name,

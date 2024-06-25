@@ -18,26 +18,22 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AppFailure {
   String get message => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String? get uriPath => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 
 class _$AppFailureImpl extends _AppFailure {
-  const _$AppFailureImpl(
-      {required this.message, required this.name, this.uriPath})
+  const _$AppFailureImpl({required this.message, required this.name})
       : super._();
 
   @override
   final String message;
   @override
   final String name;
-  @override
-  final String? uriPath;
 
   @override
   String toString() {
-    return 'AppFailure(message: $message, name: $name, uriPath: $uriPath)';
+    return 'AppFailure(message: $message, name: $name)';
   }
 
   @override
@@ -46,25 +42,21 @@ class _$AppFailureImpl extends _AppFailure {
         (other.runtimeType == runtimeType &&
             other is _$AppFailureImpl &&
             (identical(other.message, message) || other.message == message) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.uriPath, uriPath) || other.uriPath == uriPath));
+            (identical(other.name, name) || other.name == name));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message, name, uriPath);
+  int get hashCode => Object.hash(runtimeType, message, name);
 }
 
 abstract class _AppFailure extends AppFailure {
   const factory _AppFailure(
       {required final String message,
-      required final String name,
-      final String? uriPath}) = _$AppFailureImpl;
+      required final String name}) = _$AppFailureImpl;
   const _AppFailure._() : super._();
 
   @override
   String get message;
   @override
   String get name;
-  @override
-  String? get uriPath;
 }

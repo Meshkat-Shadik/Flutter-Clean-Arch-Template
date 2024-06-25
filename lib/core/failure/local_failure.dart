@@ -1,23 +1,52 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:clean_arch/core/failure/app_failure.dart';
 
-class LocalFailure implements AppFailure {
-  @override
-  final String name;
-  @override
-  final String? uriPath;
-  @override
-  final String message;
+part 'local_failure.freezed.dart';
 
-  LocalFailure({
-    required this.name,
-    this.uriPath,
-    required this.message,
-  });
+@freezed
+class LocalFailure with _$LocalFailure implements AppFailure {
+  const factory LocalFailure({
+    required String name,
+    required String message,
+  }) = _LocalFailure;
 
-  factory LocalFailure.fromException(Exception e) {
+  factory LocalFailure.fromException(dynamic e) {
+    String errorMessage = e.toString();
+    String errorName = e.runtimeType.toString();
+    if (e is Exception) {
+      errorMessage = (e.toString().split(':').lastOrNull ?? '').trim();
+      errorName = e.runtimeType.toString() == '_Exception'
+          ? 'Exception'
+          : e.runtimeType.toString();
+    } else {
+      if (e is AssertionError) {
+        errorMessage = e.message.toString();
+      } else if (e is ArgumentError) {
+        errorMessage = '${e.message}: ${e.invalidValue.toString()}';
+      } else if (e is RangeError) {
+        errorMessage = '${e.message.toString()}: ${e.invalidValue.toString()}';
+      } else if (e is IndexError) {
+        errorMessage = '${e.message.toString()}: ${e.invalidValue.toString()}';
+      } else if (e is NoSuchMethodError) {
+        errorMessage = e.toString();
+      } else if (e is UnsupportedError) {
+        errorMessage = e.message ?? 'Unsupported operation';
+      } else if (e is UnimplementedError) {
+        errorMessage = e.message ?? 'Unimplemented';
+      } else if (e is StateError) {
+        errorMessage = e.message;
+      } else if (e is ConcurrentModificationError) {
+        errorMessage = e.toString();
+      } else if (e is OutOfMemoryError) {
+        errorMessage = 'Out of memory';
+      } else if (e is StackOverflowError) {
+        errorMessage = 'Stack overflow';
+      }
+    }
+
     return LocalFailure(
-      name: e.runtimeType.toString(),
-      message: e.toString(),
+      name: errorName,
+      message: errorMessage,
     );
   }
 }
