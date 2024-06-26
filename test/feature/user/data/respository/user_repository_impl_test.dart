@@ -4,6 +4,7 @@ import 'package:clean_arch/core/failure/app_failure.dart';
 import 'package:clean_arch/core/failure/failure_mapper.dart';
 import 'package:clean_arch/core/failure/network_failure.dart';
 import 'package:clean_arch/feature/user/data/datasource/remote/user_remote_datasource.dart';
+import 'package:clean_arch/feature/user/data/mappers/user_mapper.dart';
 import 'package:clean_arch/feature/user/data/respository/user_repository_impl.dart';
 import 'package:clean_arch/feature/user/domain/entity/user.dart';
 import 'package:clean_arch/feature/user/domain/repository/user_repository.dart';
@@ -40,14 +41,14 @@ void main() {
       () async {
     // Arrange
     when(() => mockUserRemoteDatasource.getUserById(tUserId))
-        .thenAnswer((_) async => Future.value(tUser));
+        .thenAnswer((_) async => Future.value(UserMapper.toDto(tUser)));
 
     // Act
     final result = await userRepository.getUser(tUserId);
 
     // Assert
     verify(() => mockUserRemoteDatasource.getUserById(tUserId)).called(1);
-    expect(result, const Right(tUser));
+    expect(result, Right<AppFailure, User>(UserMapper.toDto(tUser)));
   });
 
   //should return Failure when the call to remote data source is unsuccessful

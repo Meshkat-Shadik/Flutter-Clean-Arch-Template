@@ -21,13 +21,13 @@ class _UserRemoteDatasource implements UserRemoteDatasource {
   String? baseUrl;
 
   @override
-  Future<User> getUserById(int id) async {
+  Future<UserDto> getUserById(int id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<User>(Options(
+        await _dio.fetch<Map<String, dynamic>>(_setStreamType<UserDto>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -43,7 +43,7 @@ class _UserRemoteDatasource implements UserRemoteDatasource {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = User.fromJson(_result.data!);
+    final value = UserDto.fromJson(_result.data!);
     return value;
   }
 
