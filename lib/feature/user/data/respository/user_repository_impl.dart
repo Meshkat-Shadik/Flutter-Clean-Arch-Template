@@ -4,7 +4,9 @@ import 'package:fpdart/fpdart.dart';
 import 'package:clean_arch/feature/user/data/datasource/remote/user_remote_datasource.dart';
 import 'package:clean_arch/feature/user/domain/entity/user.dart';
 import 'package:clean_arch/feature/user/domain/repository/user_repository.dart';
+import 'package:injectable/injectable.dart';
 
+@LazySingleton(as: UserRepository)
 class UserRepositoryImpl implements UserRepository {
   final UserRemoteDatasource userRemoteDataSource;
 

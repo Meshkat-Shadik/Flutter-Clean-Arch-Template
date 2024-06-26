@@ -18,86 +18,6 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$LocalFailure {
   String get name => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $LocalFailureCopyWith<LocalFailure> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $LocalFailureCopyWith<$Res> {
-  factory $LocalFailureCopyWith(
-          LocalFailure value, $Res Function(LocalFailure) then) =
-      _$LocalFailureCopyWithImpl<$Res, LocalFailure>;
-  @useResult
-  $Res call({String name, String message});
-}
-
-/// @nodoc
-class _$LocalFailureCopyWithImpl<$Res, $Val extends LocalFailure>
-    implements $LocalFailureCopyWith<$Res> {
-  _$LocalFailureCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? message = null,
-  }) {
-    return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$LocalFailureImplCopyWith<$Res>
-    implements $LocalFailureCopyWith<$Res> {
-  factory _$$LocalFailureImplCopyWith(
-          _$LocalFailureImpl value, $Res Function(_$LocalFailureImpl) then) =
-      __$$LocalFailureImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String name, String message});
-}
-
-/// @nodoc
-class __$$LocalFailureImplCopyWithImpl<$Res>
-    extends _$LocalFailureCopyWithImpl<$Res, _$LocalFailureImpl>
-    implements _$$LocalFailureImplCopyWith<$Res> {
-  __$$LocalFailureImplCopyWithImpl(
-      _$LocalFailureImpl _value, $Res Function(_$LocalFailureImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = null,
-    Object? message = null,
-  }) {
-    return _then(_$LocalFailureImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
@@ -126,12 +46,6 @@ class _$LocalFailureImpl implements _LocalFailure {
 
   @override
   int get hashCode => Object.hash(runtimeType, name, message);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LocalFailureImplCopyWith<_$LocalFailureImpl> get copyWith =>
-      __$$LocalFailureImplCopyWithImpl<_$LocalFailureImpl>(this, _$identity);
 }
 
 abstract class _LocalFailure implements LocalFailure {
@@ -143,8 +57,4 @@ abstract class _LocalFailure implements LocalFailure {
   String get name;
   @override
   String get message;
-  @override
-  @JsonKey(ignore: true)
-  _$$LocalFailureImplCopyWith<_$LocalFailureImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }

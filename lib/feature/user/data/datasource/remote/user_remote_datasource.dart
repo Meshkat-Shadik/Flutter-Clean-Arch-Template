@@ -5,8 +5,10 @@ import 'package:dio/dio.dart';
 
 part 'user_remote_datasource.g.dart';
 
-@RestApi(baseUrl: UrlConfig.BASE_URL)
+@RestApi(baseUrl: AppConfig.BASE_URL)
 abstract class UserRemoteDatasource {
+  factory UserRemoteDatasource(Dio dio, {String baseUrl}) =
+      _UserRemoteDatasource;
   @GET('/users/{id}')
   Future<User> getUserById(@Path('id') int id);
 }
