@@ -21,10 +21,23 @@ class UserScreen extends StatelessWidget {
               listener: (context, user) {},
               builder: (context, user) {
                 return user.maybeWhen(
-                  loading: () => const CircularProgressIndicator(),
-                  loaded: (user) => UserProfileCard(user: user),
-                  error: (failure) => Text(failure.message),
-                  orElse: () => const SizedBox.shrink(),
+                  initial: () => const SizedBox.shrink(
+                    key: Key('sized_box_initial'),
+                  ),
+                  loading: () => const CircularProgressIndicator(
+                    key: Key('loading_indicator'),
+                  ),
+                  loaded: (user) => UserProfileCard(
+                    key: const Key('user_profile_card'),
+                    user: user,
+                  ),
+                  error: (failure) => Text(
+                    failure.message,
+                    key: const Key('error_message'),
+                  ),
+                  orElse: () => const SizedBox.shrink(
+                    key: Key('sized_box_or_else'),
+                  ),
                 );
               },
             ),
