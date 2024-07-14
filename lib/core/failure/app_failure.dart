@@ -3,12 +3,14 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'app_failure.freezed.dart';
 
 @freezed
-abstract class AppFailure with _$AppFailure {
+abstract class AppFailure implements _$AppFailure, Exception {
   const AppFailure._();
 
   const factory AppFailure({
     required String message,
     required String name,
+    int? code,
+    String? uriPath,
   }) = _AppFailure;
 }
 
@@ -20,6 +22,8 @@ extension AppFailureCopyWithX on AppFailure {
     return AppFailure(
       message: message ?? this.message,
       name: name ?? this.name,
+      code: code,
+      uriPath: uriPath,
     );
   }
 }

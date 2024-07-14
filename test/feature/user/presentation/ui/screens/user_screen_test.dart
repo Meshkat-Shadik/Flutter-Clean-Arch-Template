@@ -3,6 +3,7 @@
 import 'dart:io';
 
 import 'package:bloc_test/bloc_test.dart';
+import 'package:clean_arch/core/failure/local_failure.dart';
 import 'package:clean_arch/core/failure/network_failure.dart';
 import 'package:clean_arch/feature/user/domain/entity/user.dart';
 import 'package:clean_arch/feature/user/presentation/ui/screens/user_screen.dart';
@@ -69,7 +70,7 @@ void main() {
     'user screen should return UserProfileCard',
     (tester) async {
       //arrange
-      when(() => userBloc.state).thenReturn(const UserState.loaded(user));
+      when(() => userBloc.state).thenReturn(const UserState.data(user));
       //act
       await tester.pumpWidget(_makeTestableWidget(const UserScreen()));
       await tester.pumpAndSettle();
@@ -86,7 +87,26 @@ void main() {
         message: 'Network Failure',
         name: 'Network Failure',
         uriPath: 'uriPath',
-        statusCode: 404,
+        code: 404,
+      );
+      when(() => userBloc.state).thenReturn(const UserState.error(failure));
+      //act
+      await tester.pumpWidget(_makeTestableWidget(const UserScreen()));
+      //assert
+      expect(find.byKey(const Key('error_message')), findsOneWidget);
+      final errorMessageWidget =
+          tester.widget<Text>(find.byKey(const Key('error_message')));
+      expect(errorMessageWidget.data, equals(failure.message));
+    },
+  );
+
+  testWidgets(
+    'user screen should return Text with error message',
+    (tester) async {
+      //arrange
+      const failure = LocalFailure(
+        message: 'Local Failure',
+        name: 'Runtime Error: Division by zero',
       );
       when(() => userBloc.state).thenReturn(const UserState.error(failure));
       //act

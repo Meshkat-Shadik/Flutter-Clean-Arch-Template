@@ -34,7 +34,7 @@ void main() {
     message: 'Network Failure',
     name: 'Network Failure',
     uriPath: 'uriPath',
-    statusCode: 404,
+    code: 404,
   );
   group(
     'User Bloc Test Group',
@@ -49,7 +49,7 @@ void main() {
         build: () => UserBloc(getUserUsecase: getUserUsecase),
         act: (bloc) => bloc.add(const UserEvent.watchUserById(1)),
         skip: 1,
-        expect: () => const <UserState>[UserState.loaded(user)],
+        expect: () => const <UserState>[UserState.data(user)],
         verify: (bloc) {
           verify(() => getUserUsecase(1)).called(1);
           verifyNoMoreInteractions(getUserUsecase);

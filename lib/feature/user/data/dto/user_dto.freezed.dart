@@ -20,12 +20,12 @@ UserDto _$UserDtoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserDto {
-  int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get username => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  String get phone => throw _privateConstructorUsedError;
-  String get website => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get username => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  String? get phone => throw _privateConstructorUsedError;
+  String? get website => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
@@ -45,17 +45,17 @@ class _$UserDtoImpl implements _UserDto {
       _$$UserDtoImplFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
-  final String name;
+  final String? name;
   @override
-  final String username;
+  final String? username;
   @override
-  final String email;
+  final String? email;
   @override
-  final String phone;
+  final String? phone;
   @override
-  final String website;
+  final String? website;
 
   @override
   String toString() {
@@ -91,25 +91,25 @@ class _$UserDtoImpl implements _UserDto {
 
 abstract class _UserDto implements UserDto {
   const factory _UserDto(
-      {required final int id,
-      required final String name,
-      required final String username,
-      required final String email,
-      required final String phone,
-      required final String website}) = _$UserDtoImpl;
+      {required final int? id,
+      required final String? name,
+      required final String? username,
+      required final String? email,
+      required final String? phone,
+      required final String? website}) = _$UserDtoImpl;
 
   factory _UserDto.fromJson(Map<String, dynamic> json) = _$UserDtoImpl.fromJson;
 
   @override
-  int get id;
+  int? get id;
   @override
-  String get name;
+  String? get name;
   @override
-  String get username;
+  String? get username;
   @override
-  String get email;
+  String? get email;
   @override
-  String get phone;
+  String? get phone;
   @override
-  String get website;
+  String? get website;
 }

@@ -16,12 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$User {
-  int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get username => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  String get phone => throw _privateConstructorUsedError;
-  String get website => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get username => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  String? get phone => throw _privateConstructorUsedError;
+  String? get website => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -36,17 +36,17 @@ class _$UserImpl implements _User {
       required this.website});
 
   @override
-  final int id;
+  final int? id;
   @override
-  final String name;
+  final String? name;
   @override
-  final String username;
+  final String? username;
   @override
-  final String email;
+  final String? email;
   @override
-  final String phone;
+  final String? phone;
   @override
-  final String website;
+  final String? website;
 
   @override
   String toString() {
@@ -74,23 +74,23 @@ class _$UserImpl implements _User {
 
 abstract class _User implements User {
   const factory _User(
-      {required final int id,
-      required final String name,
-      required final String username,
-      required final String email,
-      required final String phone,
-      required final String website}) = _$UserImpl;
+      {required final int? id,
+      required final String? name,
+      required final String? username,
+      required final String? email,
+      required final String? phone,
+      required final String? website}) = _$UserImpl;
 
   @override
-  int get id;
+  int? get id;
   @override
-  String get name;
+  String? get name;
   @override
-  String get username;
+  String? get username;
   @override
-  String get email;
+  String? get email;
   @override
-  String get phone;
+  String? get phone;
   @override
-  String get website;
+  String? get website;
 }

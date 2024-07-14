@@ -1,3 +1,4 @@
+import 'package:clean_arch/core/networking/interceptors/api_interceptor.dart';
 import 'package:clean_arch/core/networking/url_config.dart';
 import 'package:injectable/injectable.dart';
 import 'package:dio/dio.dart';
@@ -13,9 +14,10 @@ abstract class AppDiModule {
         validateStatus: (status) => true,
         receiveDataWhenStatusError: true,
       ))
-        ..interceptors.add(
+        ..interceptors.addAll([
           LogInterceptor(
             responseBody: true,
           ),
-        );
+          ApiInterceptor(),
+        ]);
 }

@@ -145,7 +145,7 @@ mixin _$UserState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) loaded,
+    required TResult Function(User user) data,
     required TResult Function(AppFailure failure) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -153,7 +153,7 @@ mixin _$UserState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? loaded,
+    TResult? Function(User user)? data,
     TResult? Function(AppFailure failure)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -161,7 +161,7 @@ mixin _$UserState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? loaded,
+    TResult Function(User user)? data,
     TResult Function(AppFailure failure)? error,
     required TResult orElse(),
   }) =>
@@ -170,7 +170,7 @@ mixin _$UserState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Loaded value) data,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -178,7 +178,7 @@ mixin _$UserState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Loaded value)? data,
     TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -186,7 +186,7 @@ mixin _$UserState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Loaded value)? data,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -217,7 +217,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) loaded,
+    required TResult Function(User user) data,
     required TResult Function(AppFailure failure) error,
   }) {
     return initial();
@@ -228,7 +228,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? loaded,
+    TResult? Function(User user)? data,
     TResult? Function(AppFailure failure)? error,
   }) {
     return initial?.call();
@@ -239,7 +239,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? loaded,
+    TResult Function(User user)? data,
     TResult Function(AppFailure failure)? error,
     required TResult orElse(),
   }) {
@@ -254,7 +254,7 @@ class _$InitialImpl implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Loaded value) data,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -265,7 +265,7 @@ class _$InitialImpl implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Loaded value)? data,
     TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
@@ -276,7 +276,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Loaded value)? data,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -315,7 +315,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) loaded,
+    required TResult Function(User user) data,
     required TResult Function(AppFailure failure) error,
   }) {
     return loading();
@@ -326,7 +326,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? loaded,
+    TResult? Function(User user)? data,
     TResult? Function(AppFailure failure)? error,
   }) {
     return loading?.call();
@@ -337,7 +337,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? loaded,
+    TResult Function(User user)? data,
     TResult Function(AppFailure failure)? error,
     required TResult orElse(),
   }) {
@@ -352,7 +352,7 @@ class _$LoadingImpl implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Loaded value) data,
     required TResult Function(_Error value) error,
   }) {
     return loading(this);
@@ -363,7 +363,7 @@ class _$LoadingImpl implements _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Loaded value)? data,
     TResult? Function(_Error value)? error,
   }) {
     return loading?.call(this);
@@ -374,7 +374,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Loaded value)? data,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -399,7 +399,7 @@ class _$LoadedImpl implements _Loaded {
 
   @override
   String toString() {
-    return 'UserState.loaded(user: $user)';
+    return 'UserState.data(user: $user)';
   }
 
   @override
@@ -418,10 +418,10 @@ class _$LoadedImpl implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) loaded,
+    required TResult Function(User user) data,
     required TResult Function(AppFailure failure) error,
   }) {
-    return loaded(user);
+    return data(user);
   }
 
   @override
@@ -429,10 +429,10 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? loaded,
+    TResult? Function(User user)? data,
     TResult? Function(AppFailure failure)? error,
   }) {
-    return loaded?.call(user);
+    return data?.call(user);
   }
 
   @override
@@ -440,12 +440,12 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? loaded,
+    TResult Function(User user)? data,
     TResult Function(AppFailure failure)? error,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(user);
+    if (data != null) {
+      return data(user);
     }
     return orElse();
   }
@@ -455,10 +455,10 @@ class _$LoadedImpl implements _Loaded {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Loaded value) data,
     required TResult Function(_Error value) error,
   }) {
-    return loaded(this);
+    return data(this);
   }
 
   @override
@@ -466,10 +466,10 @@ class _$LoadedImpl implements _Loaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Loaded value)? data,
     TResult? Function(_Error value)? error,
   }) {
-    return loaded?.call(this);
+    return data?.call(this);
   }
 
   @override
@@ -477,12 +477,12 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Loaded value)? data,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(this);
+    if (data != null) {
+      return data(this);
     }
     return orElse();
   }
@@ -523,7 +523,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(User user) loaded,
+    required TResult Function(User user) data,
     required TResult Function(AppFailure failure) error,
   }) {
     return error(failure);
@@ -534,7 +534,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(User user)? loaded,
+    TResult? Function(User user)? data,
     TResult? Function(AppFailure failure)? error,
   }) {
     return error?.call(failure);
@@ -545,7 +545,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(User user)? loaded,
+    TResult Function(User user)? data,
     TResult Function(AppFailure failure)? error,
     required TResult orElse(),
   }) {
@@ -560,7 +560,7 @@ class _$ErrorImpl implements _Error {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Loaded value) data,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -571,7 +571,7 @@ class _$ErrorImpl implements _Error {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Loaded value)? data,
     TResult? Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -582,7 +582,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Loaded value)? data,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {

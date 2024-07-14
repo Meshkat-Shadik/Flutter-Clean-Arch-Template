@@ -48,7 +48,7 @@ void main() {
       name: 'NetworkFailure',
       message: 'Network Error',
       uriPath: '/users/$tUserId',
-      statusCode: 404,
+      code: 404,
     );
     when(() => mockUserRepository.getUser(tUserId))
         .thenAnswer((_) async => const Left(tFailure));

@@ -21,7 +21,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         final result = await getUserUsecase(event.id);
         result.fold(
           (failure) => emit(UserState.error(failure)),
-          (user) => emit(UserState.loaded(user)),
+          (user) => emit(UserState.data(user)),
         );
       },
     );

@@ -19,7 +19,7 @@ mixin _$NetworkFailure {
   String get name => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   String get uriPath => throw _privateConstructorUsedError;
-  int get statusCode => throw _privateConstructorUsedError;
+  int get code => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $NetworkFailureCopyWith<NetworkFailure> get copyWith =>
@@ -32,7 +32,7 @@ abstract class $NetworkFailureCopyWith<$Res> {
           NetworkFailure value, $Res Function(NetworkFailure) then) =
       _$NetworkFailureCopyWithImpl<$Res, NetworkFailure>;
   @useResult
-  $Res call({String name, String message, String uriPath, int statusCode});
+  $Res call({String name, String message, String uriPath, int code});
 }
 
 /// @nodoc
@@ -51,7 +51,7 @@ class _$NetworkFailureCopyWithImpl<$Res, $Val extends NetworkFailure>
     Object? name = null,
     Object? message = null,
     Object? uriPath = null,
-    Object? statusCode = null,
+    Object? code = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -66,9 +66,9 @@ class _$NetworkFailureCopyWithImpl<$Res, $Val extends NetworkFailure>
           ? _value.uriPath
           : uriPath // ignore: cast_nullable_to_non_nullable
               as String,
-      statusCode: null == statusCode
-          ? _value.statusCode
-          : statusCode // ignore: cast_nullable_to_non_nullable
+      code: null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
   }
@@ -82,7 +82,7 @@ abstract class _$$NetworkFailureImplCopyWith<$Res>
       __$$NetworkFailureImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String message, String uriPath, int statusCode});
+  $Res call({String name, String message, String uriPath, int code});
 }
 
 /// @nodoc
@@ -99,7 +99,7 @@ class __$$NetworkFailureImplCopyWithImpl<$Res>
     Object? name = null,
     Object? message = null,
     Object? uriPath = null,
-    Object? statusCode = null,
+    Object? code = null,
   }) {
     return _then(_$NetworkFailureImpl(
       name: null == name
@@ -114,9 +114,9 @@ class __$$NetworkFailureImplCopyWithImpl<$Res>
           ? _value.uriPath
           : uriPath // ignore: cast_nullable_to_non_nullable
               as String,
-      statusCode: null == statusCode
-          ? _value.statusCode
-          : statusCode // ignore: cast_nullable_to_non_nullable
+      code: null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -129,7 +129,7 @@ class _$NetworkFailureImpl implements _NetworkFailure {
       {required this.name,
       required this.message,
       required this.uriPath,
-      required this.statusCode});
+      required this.code});
 
   @override
   final String name;
@@ -138,11 +138,11 @@ class _$NetworkFailureImpl implements _NetworkFailure {
   @override
   final String uriPath;
   @override
-  final int statusCode;
+  final int code;
 
   @override
   String toString() {
-    return 'NetworkFailure(name: $name, message: $message, uriPath: $uriPath, statusCode: $statusCode)';
+    return 'NetworkFailure(name: $name, message: $message, uriPath: $uriPath, code: $code)';
   }
 
   @override
@@ -153,13 +153,11 @@ class _$NetworkFailureImpl implements _NetworkFailure {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.uriPath, uriPath) || other.uriPath == uriPath) &&
-            (identical(other.statusCode, statusCode) ||
-                other.statusCode == statusCode));
+            (identical(other.code, code) || other.code == code));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, message, uriPath, statusCode);
+  int get hashCode => Object.hash(runtimeType, name, message, uriPath, code);
 
   @JsonKey(ignore: true)
   @override
@@ -174,7 +172,7 @@ abstract class _NetworkFailure implements NetworkFailure {
       {required final String name,
       required final String message,
       required final String uriPath,
-      required final int statusCode}) = _$NetworkFailureImpl;
+      required final int code}) = _$NetworkFailureImpl;
 
   @override
   String get name;
@@ -183,7 +181,7 @@ abstract class _NetworkFailure implements NetworkFailure {
   @override
   String get uriPath;
   @override
-  int get statusCode;
+  int get code;
   @override
   @JsonKey(ignore: true)
   _$$NetworkFailureImplCopyWith<_$NetworkFailureImpl> get copyWith =>

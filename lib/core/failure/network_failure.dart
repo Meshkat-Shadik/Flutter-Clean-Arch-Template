@@ -1,7 +1,7 @@
 // ignore_for_file: , depend_on_referenced_packages
 
 import 'package:clean_arch/core/failure/app_failure.dart';
-import 'package:clean_arch/core/networking/status_code.dart';
+import 'package:clean_arch/core/networking/network_misc.dart';
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -13,7 +13,7 @@ class NetworkFailure with _$NetworkFailure implements AppFailure {
     required String name,
     required String message,
     required String uriPath,
-    required int statusCode,
+    required int code,
   }) = _NetworkFailure;
 
   static NetworkFailure getDioException(Exception error) {
@@ -27,15 +27,11 @@ class NetworkFailure with _$NetworkFailure implements AppFailure {
         name: status?.name ?? 'Unrecognized error',
         uriPath: path,
         message: message,
-        statusCode: code ?? 0,
+        code: code ?? 0,
       );
     }
-    return const NetworkFailure(
-      name: 'Unrecognized error',
-      uriPath: '',
-      message: 'Unrecognized error',
-      statusCode: 0,
-    );
+    //we can't be here because we checked before calling this method
+    throw Exception('Terminating: We can\'t be here!');
   }
 
   // Helper method to handle different types of Dio exceptions
@@ -46,11 +42,11 @@ class NetworkFailure with _$NetworkFailure implements AppFailure {
       case DioExceptionType.receiveTimeout:
         return "Timeout occurred while sending or receiving";
       case DioExceptionType.badResponse:
-        return error.message ?? 'N/A';
+        return error.message ?? 'Bad response';
       case DioExceptionType.cancel:
         break;
       case DioExceptionType.unknown:
-        return error.message ?? 'N/A';
+        return _getErrorResponseBodyFromServer(error);
       case DioExceptionType.badCertificate:
         return "Internal Server Error";
       case DioExceptionType.connectionError:
@@ -59,5 +55,16 @@ class NetworkFailure with _$NetworkFailure implements AppFailure {
         return "Unknown Error";
     }
     return "Unknown Error";
+  }
+
+  static String _getErrorResponseBodyFromServer(DioException error) {
+    assert(error.type == DioExceptionType.unknown);
+
+    // Here Map<String, dynamic> is the type of the response body
+    // You can use a proper Model class to parse the response body
+    final responseBody = error.response?.data as Map<String, dynamic>;
+    return error.message ??
+        responseBody['message'] as String? ??
+        'Data is not available from server';
   }
 }

@@ -8,16 +8,23 @@ class LocalFailure with _$LocalFailure implements AppFailure {
   const factory LocalFailure({
     required String name,
     required String message,
+    String? uriPath,
+    int? code,
   }) = _LocalFailure;
 
   factory LocalFailure.fromException(dynamic e) {
     String errorMessage = e.toString();
     String errorName = e.runtimeType.toString();
     if (e is Exception) {
-      errorMessage = (e.toString().split(':').lastOrNull ?? '').trim();
-      errorName = e.runtimeType.toString() == '_Exception'
-          ? 'Exception'
-          : e.runtimeType.toString();
+      if (e is LocalFailure) {
+        errorMessage = e.message;
+        errorName = e.name;
+      } else {
+        errorMessage = (e.toString().split(':').lastOrNull ?? '').trim();
+        errorName = e.runtimeType.toString() == '_Exception'
+            ? 'Exception'
+            : e.runtimeType.toString();
+      }
     } else {
       if (e is AssertionError) {
         errorMessage = e.message.toString();

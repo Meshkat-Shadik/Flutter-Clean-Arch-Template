@@ -18,22 +18,29 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AppFailure {
   String get message => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  int? get code => throw _privateConstructorUsedError;
+  String? get uriPath => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 
 class _$AppFailureImpl extends _AppFailure {
-  const _$AppFailureImpl({required this.message, required this.name})
+  const _$AppFailureImpl(
+      {required this.message, required this.name, this.code, this.uriPath})
       : super._();
 
   @override
   final String message;
   @override
   final String name;
+  @override
+  final int? code;
+  @override
+  final String? uriPath;
 
   @override
   String toString() {
-    return 'AppFailure(message: $message, name: $name)';
+    return 'AppFailure(message: $message, name: $name, code: $code, uriPath: $uriPath)';
   }
 
   @override
@@ -42,21 +49,29 @@ class _$AppFailureImpl extends _AppFailure {
         (other.runtimeType == runtimeType &&
             other is _$AppFailureImpl &&
             (identical(other.message, message) || other.message == message) &&
-            (identical(other.name, name) || other.name == name));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.code, code) || other.code == code) &&
+            (identical(other.uriPath, uriPath) || other.uriPath == uriPath));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message, name);
+  int get hashCode => Object.hash(runtimeType, message, name, code, uriPath);
 }
 
 abstract class _AppFailure extends AppFailure {
   const factory _AppFailure(
       {required final String message,
-      required final String name}) = _$AppFailureImpl;
+      required final String name,
+      final int? code,
+      final String? uriPath}) = _$AppFailureImpl;
   const _AppFailure._() : super._();
 
   @override
   String get message;
   @override
   String get name;
+  @override
+  int? get code;
+  @override
+  String? get uriPath;
 }

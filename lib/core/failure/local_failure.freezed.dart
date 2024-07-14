@@ -18,21 +18,28 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$LocalFailure {
   String get name => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
+  String? get uriPath => throw _privateConstructorUsedError;
+  int? get code => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 
 class _$LocalFailureImpl implements _LocalFailure {
-  const _$LocalFailureImpl({required this.name, required this.message});
+  const _$LocalFailureImpl(
+      {required this.name, required this.message, this.uriPath, this.code});
 
   @override
   final String name;
   @override
   final String message;
+  @override
+  final String? uriPath;
+  @override
+  final int? code;
 
   @override
   String toString() {
-    return 'LocalFailure(name: $name, message: $message)';
+    return 'LocalFailure(name: $name, message: $message, uriPath: $uriPath, code: $code)';
   }
 
   @override
@@ -41,20 +48,28 @@ class _$LocalFailureImpl implements _LocalFailure {
         (other.runtimeType == runtimeType &&
             other is _$LocalFailureImpl &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.uriPath, uriPath) || other.uriPath == uriPath) &&
+            (identical(other.code, code) || other.code == code));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, message);
+  int get hashCode => Object.hash(runtimeType, name, message, uriPath, code);
 }
 
 abstract class _LocalFailure implements LocalFailure {
   const factory _LocalFailure(
       {required final String name,
-      required final String message}) = _$LocalFailureImpl;
+      required final String message,
+      final String? uriPath,
+      final int? code}) = _$LocalFailureImpl;
 
   @override
   String get name;
   @override
   String get message;
+  @override
+  String? get uriPath;
+  @override
+  int? get code;
 }

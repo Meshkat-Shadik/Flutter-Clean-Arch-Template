@@ -27,14 +27,32 @@ class UserScreen extends StatelessWidget {
                   loading: () => const CircularProgressIndicator(
                     key: Key('loading_indicator'),
                   ),
-                  loaded: (user) => UserProfileCard(
+                  data: (user) => UserProfileCard(
                     key: const Key('user_profile_card'),
                     user: user,
                   ),
-                  error: (failure) => Text(
-                    failure.message,
-                    key: const Key('error_message'),
-                  ),
+                  error: (failure) {
+                    return Column(
+                      children: [
+                        Text(
+                          failure.message,
+                          key: const Key('error_message'),
+                        ),
+                        Text(
+                          failure.name,
+                          key: const Key('error_name'),
+                        ),
+                        Text(
+                          failure.uriPath.toString(),
+                          key: const Key('error_uri_path'),
+                        ),
+                        Text(
+                          failure.code.toString(),
+                          key: const Key('error_code'),
+                        ),
+                      ],
+                    );
+                  },
                   orElse: () => const SizedBox.shrink(
                     key: Key('sized_box_or_else'),
                   ),

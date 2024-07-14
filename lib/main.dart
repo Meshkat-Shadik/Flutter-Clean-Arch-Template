@@ -16,8 +16,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: BlocProvider<UserBloc>(
-        create: (context) => getIt<UserBloc>()..add(const WatchUserById(1)),
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider<UserBloc>(
+            create: (context) =>
+                getIt<UserBloc>()..add(const UserEvent.watchUserById(1)),
+          ),
+        ],
         child: const UserScreen(),
       ),
     );

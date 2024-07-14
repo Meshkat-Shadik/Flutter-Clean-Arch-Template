@@ -32,7 +32,7 @@ class UserProfileCard extends StatelessWidget {
               const SizedBox(height: 16.0),
               Center(
                 child: Text(
-                  user.name,
+                  user.name ?? 'N/A',
                   style: const TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -53,15 +53,15 @@ class UserProfileCard extends StatelessWidget {
               const Divider(height: 32.0),
               ListTile(
                 leading: const Icon(Icons.email, color: Colors.purple),
-                title: Text(user.email),
+                title: Text(user.email ?? 'N/A'),
               ),
               ListTile(
                 leading: const Icon(Icons.phone, color: Colors.purple),
-                title: Text(user.phone),
+                title: Text(user.phone ?? 'N/A'),
               ),
               ListTile(
                 leading: const Icon(Icons.web, color: Colors.purple),
-                title: Text(user.website),
+                title: Text(user.website ?? 'N/A'),
               ),
             ],
           ),
