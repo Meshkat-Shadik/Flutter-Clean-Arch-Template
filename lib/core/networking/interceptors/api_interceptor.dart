@@ -66,6 +66,21 @@ class ApiInterceptor extends Interceptor {
   ) async {
     ColoredLogger.Yellow.log(err.message);
     ColoredLogger.Yellow.log(err.requestOptions.uri);
+
+    if (err.type == DioExceptionType.connectionError ||
+        err.type == DioExceptionType.sendTimeout ||
+        err.type == DioExceptionType.receiveTimeout ||
+        err.type == DioExceptionType.connectionTimeout) {
+      return handler.reject(
+        DioException(
+          type: DioExceptionType.connectionError,
+          requestOptions: err.requestOptions,
+          response: err.response,
+          message: 'No internet connection',
+        ),
+      );
+    }
+
     return handler.reject(
       DioException(
         requestOptions: err.requestOptions,

@@ -1,4 +1,4 @@
-// ignore_for_file: , depend_on_referenced_packages
+// ignore_for_file: , depend_on_referenced_packages, no_leading_underscores_for_local_identifiers
 
 import 'package:clean_arch/core/failure/app_failure.dart';
 import 'package:clean_arch/core/networking/network_misc.dart';
@@ -19,12 +19,12 @@ class NetworkFailure with _$NetworkFailure implements AppFailure {
   static NetworkFailure getDioException(Exception error) {
     if (error is DioException) {
       final code = error.response?.statusCode;
-      final status = getStatusCode(code);
       final path = error.requestOptions.path;
       final message = _handleDioErrorMessage(error);
+      final name = _getErrorName(error);
 
       return NetworkFailure(
-        name: status?.name ?? 'Unrecognized error',
+        name: name,
         uriPath: path,
         message: message,
         code: code ?? 0,
@@ -59,12 +59,25 @@ class NetworkFailure with _$NetworkFailure implements AppFailure {
 
   static String _getErrorResponseBodyFromServer(DioException error) {
     assert(error.type == DioExceptionType.unknown);
-
     // Here Map<String, dynamic> is the type of the response body
     // You can use a proper Model class to parse the response body
-    final responseBody = error.response?.data as Map<String, dynamic>;
+    final responseBody = error.response?.data as Map<String, dynamic>?;
     return error.message ??
-        responseBody['message'] as String? ??
+        responseBody?['message'] as String? ??
         'Data is not available from server';
+  }
+
+  static String _getErrorName(DioException error) {
+    String _name = 'Unrecognized error';
+    if (error.type == DioExceptionType.connectionError ||
+        error.type == DioExceptionType.sendTimeout ||
+        error.type == DioExceptionType.receiveTimeout ||
+        error.type == DioExceptionType.connectionTimeout) {
+      _name = 'No internet connection';
+    }
+
+    final code = error.response?.statusCode;
+    final status = getStatusCode(code);
+    return status?.name ?? _name;
   }
 }
